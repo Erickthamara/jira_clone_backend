@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("jira_clone_backend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8bf1480f3b3330b081f35ee9b3a23e0302eb7051")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ffb829a39ba5bae8e17e76e6f6ef43c47f4c2e1c")]
 [assembly: System.Reflection.AssemblyProductAttribute("jira_clone_backend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("jira_clone_backend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
