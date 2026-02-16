@@ -1,4 +1,17 @@
+using DotNetEnv;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+
+
+
+Env.Load();
+
+string PosgresConnectionString = Environment.GetEnvironmentVariable("PostgresConnectionString") ?? throw new ArgumentNullException("PostgresConnectionString is missing");
+
+
+builder.Services.AddDbContextPool<jira_clone_backend.Data.JiraContext>(opt =>
+  opt.UseNpgsql(PosgresConnectionString));
 
 // Add services to the container.
 
