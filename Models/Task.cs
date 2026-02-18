@@ -11,8 +11,8 @@ namespace jira_clone_backend.Models
 
         [Required]
         public int ProjectId { get; set; }
+        public Project? Project { get; set; }
 
-        [Required]
         public int ParentTaskId { get; set; }
 
         [Required]
@@ -21,18 +21,16 @@ namespace jira_clone_backend.Models
 
         [Required]
         public int AssigneeId { get; set; }
+        public User? User { get; set; }
 
 
         [Required]
         public string Title { get; set; } = string.Empty;
 
-        [Required]
         public TaskStatusEnum? Status { get; set; }
 
-        [Required]
         public TaskPriority? Priority { get; set; }
 
-        [Required]
         public string Type { get; set; } = string.Empty;
 
         [Required]

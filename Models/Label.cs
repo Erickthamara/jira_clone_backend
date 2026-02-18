@@ -12,6 +12,8 @@ namespace jira_clone_backend.Models
         [Required]
         public int ProjectId { get; set; }
 
+        public Project? Project { get; set; }
+
         [Required]
         public string Name { get; set; } = String.Empty;
 

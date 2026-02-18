@@ -10,14 +10,15 @@ namespace jira_clone_backend.Models
 
         [Required]
         public int UserId { get; set; }
+        public User? User { get; set; }
 
         [Required]
         public int ProjectId { get; set; }
+        public Project? Project { get; set; }
 
         [Required]
         public string Role { get; set; } = string.Empty;
 
-        [Required]
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     }
 }
