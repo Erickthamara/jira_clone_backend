@@ -4,6 +4,9 @@ namespace jira_clone_backend.DTO
 {
     public class ProjectResponse
     {
+
+        public int Id { get; set; }
+
         [Required]
         public int UserId { get; set; }
 
