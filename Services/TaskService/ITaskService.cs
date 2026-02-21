@@ -10,7 +10,7 @@ namespace jira_clone_backend.Services.TaskService
 
         Task<TaskResponse> AddTaskAsync(TaskResponse NewTask);
 
-        Task<bool> UpdateTaskAsync(TaskResponse TaskObject);
+        Task<bool> UpdateTaskAsync(int Id, TaskResponse TaskObject);
 
         Task<bool> DeleteTaskAsync(int id);
     }

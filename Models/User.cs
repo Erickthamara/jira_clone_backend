@@ -24,6 +24,8 @@ namespace jira_clone_backend.Models
 
         public bool IsActive { get; set; }
 
+        public DateTime DeactivatedAt { get; set; }
+
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
         public string? AvatarUrl { get; set; }

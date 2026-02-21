@@ -9,7 +9,7 @@ namespace jira_clone_backend.Data
         public DbSet<Label> Labels { get; set; }
         public DbSet<Project> Projects { get; set; }
         public DbSet<ProjectMember> ProjectMembers { get; set; }
-        public DbSet<Models.Task> Tasks { get; set; }
+        public DbSet<Models.JiraTask> Tasks { get; set; }
         public DbSet<User> Users { get; set; }
     }
 

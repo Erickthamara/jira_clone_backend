@@ -1,6 +1,6 @@
 ﻿using jira_clone_backend.DTO;
 
-namespace jira_clone_backend.Services.User
+namespace jira_clone_backend.Services.UserService
 {
     public interface IUserService
     {
@@ -8,9 +8,9 @@ namespace jira_clone_backend.Services.User
 
         Task<UserResponse> GetSingleUserByIdAsync(int Id);
 
-        Task<UserResponse> AddUserAsync(UserLoginResponse NewUser);
+        Task<UserResponse> AddUserAsync(UserResponse NewUser);
 
-        Task<bool> UpdateUserAsync(UserResponse UserObject);
+        Task<bool> UpdateUserAsync(int Id, UserResponse UserObject);
 
         Task<bool> DeleteUserAsync(int id);
     }

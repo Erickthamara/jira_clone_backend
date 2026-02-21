@@ -134,7 +134,7 @@ namespace jira_clone_backend.Migrations
                     b.ToTable("ProjectMembers");
                 });
 
-            modelBuilder.Entity("jira_clone_backend.Models.Task", b =>
+            modelBuilder.Entity("jira_clone_backend.Models.JiraTask", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
