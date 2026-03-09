@@ -8,12 +8,12 @@ namespace jira_clone_backend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProjectsControllers : ControllerBase
+    public class ProjectsController : ControllerBase
     {
 
         private readonly IProjectService projectService;
 
-        public ProjectsControllers(IProjectService service) => projectService = service;
+        public ProjectsController(IProjectService service) => projectService = service;
 
         [HttpGet]
         public async Task<ActionResult<ProjectResponse>> GetProjects()
@@ -21,7 +21,7 @@ namespace jira_clone_backend.Controllers
             return Ok(await projectService.GetAllProjectsAsync());
         }
 
-        [HttpGet]
+        [HttpGet("{id}")]
         public async Task<ActionResult<ProjectResponse>> GetSingleProject(int Id)
         {
             var response = await projectService.GetSingleProjectByIdAsync(Id);
@@ -60,5 +60,6 @@ namespace jira_clone_backend.Controllers
             return NoContent();
 
         }
+
     }
 }

@@ -69,6 +69,23 @@ namespace jira_clone_backend.Services.UserService
             return userResponses;
         }
 
+        public async Task<User> GetSingleUserByEmailAsync(string email)
+        {
+            var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == email);
+            if (user == null) return null;
+
+            return user;
+
+            //return (new User
+            //{
+            //    Email = user.Email,
+            //    FirstName = user.FirstName,
+            //    LastName = user.LastName,
+            //    AvatarUrl = user.AvatarUrl,
+            //    UserName = user.UserName,
+            //});
+        }
+
         public async Task<UserResponse> GetSingleUserByIdAsync(int Id)
         {
             User user = await _dbContext.Users.FindAsync(Id);
@@ -85,9 +102,16 @@ namespace jira_clone_backend.Services.UserService
             };
         }
 
+        public async Task<bool> LoginUserAsync(string email, string password)
+        {
+            var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == email && u.PasswordHash == password);
+            if (user == null) return false;
+            return true;
+        }
+
         public async Task<bool> UpdateUserAsync(int Id, UserResponse UserObject)
         {
-            User user = await _dbContext.Users.FindAsync(Id);
+            var user = await _dbContext.Users.FindAsync(Id);
 
             if (user == null) return false;
 

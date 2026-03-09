@@ -93,11 +93,11 @@ namespace jira_clone_backend.Services.TaskService
             return taskResponses;
         }
 
-        public async Task<TaskResponse> GetSingleTaskByIdAsync(int Id)
+        public async Task<TaskResponse?> GetSingleTaskByIdAsync(int Id)
         {
             JiraTask task = await _dbContext.Tasks.FindAsync(Id);
 
-            if (task == null) return new TaskResponse { };
+            if (task == null) return null;
 
             return new TaskResponse
             {

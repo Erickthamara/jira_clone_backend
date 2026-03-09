@@ -1,3 +1,6 @@
+using jira_clone_backend.Services.ProjectService;
+using jira_clone_backend.Services.TaskService;
+using jira_clone_backend.Services.UserService;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -29,6 +32,10 @@ static string ConvertPostgresUriToNpgsql(string postgresUri)
 }
 
 // Add services to the container.
+
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IProjectService, ProjectService>();
+builder.Services.AddScoped<ITaskService, TaskService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

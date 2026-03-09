@@ -1,4 +1,5 @@
 ﻿using jira_clone_backend.DTO;
+using jira_clone_backend.Models;
 
 namespace jira_clone_backend.Services.UserService
 {
@@ -8,10 +9,14 @@ namespace jira_clone_backend.Services.UserService
 
         Task<UserResponse> GetSingleUserByIdAsync(int Id);
 
+        Task<User> GetSingleUserByEmailAsync(string email);
+
         Task<UserResponse> AddUserAsync(UserResponse NewUser);
 
         Task<bool> UpdateUserAsync(int Id, UserResponse UserObject);
 
         Task<bool> DeleteUserAsync(int id);
+
+        Task<bool> LoginUserAsync(string email, string password);
     }
 }

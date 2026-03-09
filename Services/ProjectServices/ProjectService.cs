@@ -31,6 +31,7 @@ namespace jira_clone_backend.Services.ProjectService
 
             return new ProjectResponse
             {
+                Id = NewProjectResponse.Id,
                 UserId = NewProjectResponse.UserId,
                 Description = NewProjectResponse.Description,
                 Name = NewProjectResponse.Name
@@ -56,6 +57,7 @@ namespace jira_clone_backend.Services.ProjectService
             List<ProjectResponse> projectResponses = [];
             projectResponses = await _dbContext.Projects.Select(p => new ProjectResponse
             {
+                Id = p.Id,
                 UserId = p.UserId,
                 Description = p.Description,
                 Name = p.Name
@@ -69,10 +71,11 @@ namespace jira_clone_backend.Services.ProjectService
         {
             Project project = await _dbContext.Projects.FindAsync(Id);
 
-            if (project == null) return new ProjectResponse { };
+            if (project == null) return null;
 
             return new ProjectResponse
             {
+                Id = project.Id,
                 UserId = project.UserId,
                 Description = project.Description,
                 Name = project.Name
