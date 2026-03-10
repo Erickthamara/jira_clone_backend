@@ -1,6 +1,7 @@
 ﻿using jira_clone_backend.Data;
 using jira_clone_backend.DTO;
 using jira_clone_backend.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace jira_clone_backend.Services.UserService
@@ -8,6 +9,8 @@ namespace jira_clone_backend.Services.UserService
     public class UserService : IUserService
     {
         private JiraContext _dbContext;
+        private PasswordHasher<User> _passwordHasher = new PasswordHasher<User>();
+
 
         public UserService(JiraContext dbContext)
         {
@@ -17,13 +20,15 @@ namespace jira_clone_backend.Services.UserService
         {
             if (NewUser == null) throw new ArgumentNullException(nameof(NewUser));
 
+            string hashedPassword = _passwordHasher.HashPassword(null, NewUser.Password);
+
             var NewUserResponse = new User
             {
                 Email = NewUser.Email,
                 FirstName = NewUser.FirstName,
                 LastName = NewUser.LastName,
                 AvatarUrl = NewUser.AvatarUrl,
-                PasswordHash = NewUser.Password,
+                PasswordHash = hashedPassword,
                 UserName = NewUser.UserName,
             };
 
@@ -125,6 +130,24 @@ namespace jira_clone_backend.Services.UserService
             await _dbContext.SaveChangesAsync();
 
             return true;
+        }
+
+        public async Task<bool> UpdateUserPasswordAsync(int Id, string newPassword)
+        {
+            var user = await _dbContext.Users.FindAsync(Id);
+            if (user == null) return false;
+            string hashedPassword = _passwordHasher.HashPassword(null, newPassword);
+            user.PasswordHash = hashedPassword;
+            await _dbContext.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<bool> VerifyUserPasswordAsync(int Id, string password)
+        {
+            var user = await _dbContext.Users.FindAsync(Id);
+            if (user == null) return false;
+            var verificationResult = _passwordHasher.VerifyHashedPassword(user, user.PasswordHash, password);
+            return verificationResult == PasswordVerificationResult.Success;
         }
     }
 }

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using jira_clone_backend.Data;
@@ -11,9 +12,11 @@ using jira_clone_backend.Data;
 namespace jira_clone_backend.Migrations
 {
     [DbContext(typeof(JiraContext))]
-    partial class JiraContextModelSnapshot : ModelSnapshot
+    [Migration("20260310174802_Added_the_refreshtoken_and_expirytime_to_user")]
+    partial class Added_the_refreshtoken_and_expirytime_to_user
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

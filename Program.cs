@@ -1,3 +1,4 @@
+using jira_clone_backend.Services.JWTService;
 using jira_clone_backend.Services.ProjectService;
 using jira_clone_backend.Services.TaskService;
 using jira_clone_backend.Services.UserService;
@@ -36,6 +37,7 @@ static string ConvertPostgresUriToNpgsql(string postgresUri)
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IProjectService, ProjectService>();
 builder.Services.AddScoped<ITaskService, TaskService>();
+builder.Services.AddScoped<IJwtService, JwtService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

@@ -20,6 +20,13 @@ namespace jira_clone_backend.Controllers
             _userService = userService;
         }
 
+        [HttpGet]
+        public string Helloworld()
+        {
+            return "Hello World!";
+
+        }
+
         [HttpPost("refresh")]
         public async Task<IActionResult> RefreshToken([FromBody] string refreshToken)
         {
@@ -48,7 +55,7 @@ namespace jira_clone_backend.Controllers
             }
 
 
-            if (user.PasswordHash != loginRequest.Password)
+            if (!await _userService.VerifyUserPasswordAsync(user.Id, loginRequest.Password))
             {
                 return Unauthorized("Invalid email or password.");
             }
@@ -66,7 +73,7 @@ namespace jira_clone_backend.Controllers
                 return BadRequest("Email and password are required.");
             }
             var createdUser = await _userService.AddUserAsync(newUser);
-            return Ok(createdUser);
+            return Ok($"User: {createdUser.Email} created successfully.");
         }
     }
 }

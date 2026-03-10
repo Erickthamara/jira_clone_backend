@@ -18,5 +18,7 @@ namespace jira_clone_backend.Services.UserService
         Task<bool> DeleteUserAsync(int id);
 
         Task<bool> LoginUserAsync(string email, string password);
+
+        Task<bool> VerifyUserPasswordAsync(int Id, string password);
     }
 }

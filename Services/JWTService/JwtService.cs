@@ -89,6 +89,8 @@ namespace jira_clone_backend.Services.JWTService
 
         public async Task<TokenResponseDto?> RefreshTokenAsync(string refreshToken)
         {
+            if (string.IsNullOrEmpty(refreshToken))
+                return null;
             try
             {
                 var userId = GetUserIdFromToken(refreshToken);
@@ -128,7 +130,7 @@ namespace jira_clone_backend.Services.JWTService
             if (userInDb == null) { return null; }
 
             userInDb.RefreshToken = refreshToken;
-            userInDb.RefreshTokenExpiryTime = DateTime.Now.AddDays(7);
+            userInDb.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(7);
 
             await _dbContext.SaveChangesAsync();
 
