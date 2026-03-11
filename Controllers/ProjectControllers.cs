@@ -1,5 +1,6 @@
 ﻿using jira_clone_backend.DTO;
 using jira_clone_backend.Services.ProjectService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -7,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace jira_clone_backend.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
     public class ProjectsController : ControllerBase
     {

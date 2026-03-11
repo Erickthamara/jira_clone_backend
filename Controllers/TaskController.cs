@@ -1,11 +1,13 @@
 ﻿using jira_clone_backend.DTO;
 using jira_clone_backend.Services.TaskService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace jira_clone_backend.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class TaskController : ControllerBase
     {
 
@@ -19,7 +21,7 @@ namespace jira_clone_backend.Controllers
             return Ok(await taskservice.GetAllTasksAsync());
         }
 
-        [HttpGet]
+        [HttpGet("{id}")]
         public async Task<ActionResult<TaskResponse>> GetSingleTask(int Id)
         {
             var response = await taskservice.GetSingleTaskByIdAsync(Id);
