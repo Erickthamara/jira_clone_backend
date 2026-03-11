@@ -142,7 +142,9 @@ namespace jira_clone_backend.Services.JWTService
             return new TokenResponseDto()
             {
                 JWTToken = GenerateToken(user),
-                RefreshToken = await SaveAndGenerateRefreshTokenAsync(user)
+                RefreshToken = await SaveAndGenerateRefreshTokenAsync(user),
+                UserId = user.Id,
+                Email = user.Email
             };
         }
 

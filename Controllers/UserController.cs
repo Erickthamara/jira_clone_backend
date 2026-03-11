@@ -61,7 +61,31 @@ namespace jira_clone_backend.Controllers
             }
 
 
-            var tokenResponse = await _jwtService.CreateTokens(user);
+            TokenResponseDto tokenResponse = await _jwtService.CreateTokens(user);
+
+            if (tokenResponse == null) return Unauthorized("Failed,try again later.");
+
+
+            var jwtCookieOptions = new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = true,
+                IsEssential = true,
+                SameSite = SameSiteMode.None,
+                Expires = DateTime.UtcNow.AddMinutes(15)
+            };
+
+            var refreshTokenCookieOptions = new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = true,
+                IsEssential = true,
+                SameSite = SameSiteMode.None,
+                Expires = DateTime.UtcNow.AddDays(7)
+            };
+            Response.Cookies.Append("jwt", tokenResponse.JWTToken, jwtCookieOptions);
+            Response.Cookies.Append("refreshToken", tokenResponse.RefreshToken, refreshTokenCookieOptions);
+
             return Ok(tokenResponse);
         }
 
